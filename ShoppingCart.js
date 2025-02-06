@@ -3,15 +3,14 @@ const axios = require("axios");
 class ShoppingCart {
     constructor() {
         this.cart = [];
-        this.taxRate = 0.125; // 12.5%
+        this.taxRate = 0.125;
     }
 
     async addProduct(productName, quantity) {
         try {
             const response = await axios.get(`http://localhost:3001/products/${productName}`);
-            console.log(`API Response for ${productName}:`, response.data); // Log the response
+            console.log(`API Response for ${productName}:`, response.data);
 
-            // Extract the price from the response object
             const productPrice = response.data.price;
 
             this.cart.push({
@@ -22,7 +21,7 @@ class ShoppingCart {
 
         } catch (error) {
             console.error(`Error fetching price for ${productName}:`, error.message);
-            console.error("Error details:", error.response?.data || error); // Log detailed error
+            console.error("Error details:", error.response?.data || error); 
         }
     }
 
